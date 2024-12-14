@@ -37,7 +37,6 @@ function startDrawing(e) {
   [prevX, prevY] = getCoordinates(e);
   ctx.lineWidth = lineWidth;
   ctx.strokeStyle = currentColor;
-  ctx.beginPath();
   snapshot = ctx.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   [lastX, lastY] = getCoordinates(e);
 }
@@ -52,42 +51,38 @@ function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-
-
-
-
-
-
-
-
 // Рисование прямой линии
 function drawStraight(e) {
-  // const [x, y] = getCoordinates(e);
-  // ctx.lineCap = "butt";
-  // ctx.lineJoin = "miter";
-  // ctx.moveTo(lastX, lastY);  // Начало от предыдущей точки
-  // ctx.lineTo(x, y);  // Прямая линия до текущей точки
-  // ctx.stroke();
-  // [lastX, lastY] = [x, y];
+  ctx.beginPath();
+  ctx.putImageData(snapshot, 0, 0);
+  ctx.moveTo(prevX, prevY);  // Начало от предыдущей точки
+  const [x, y] = getCoordinates(e);
+  ctx.lineTo(x, y);  // Прямая линия до текущей точки
+  ctx.stroke();
+  [lastX, lastY] = [x, y];
 }
 
 // Рисование округлой линии
 function drawVector(e) {
-  // const [x, y] = getCoordinates(e);
-  // ctx.lineCap = "round";
-  // ctx.lineJoin = "round";
-  // ctx.moveTo(lastX, lastY);  // Начало от предыдущей точки
-  // ctx.arcTo(lastX, lastY, x, y, 20);  // Используем arcTo для рисования округлой линии
-  // ctx.stroke();
-  // [lastX, lastY] = [x, y];
+  ctx.beginPath();
+  const [x, y] = getCoordinates(e); // Получаем текущие координаты
+  // Сначала рисуем полукруг
+  ctx.putImageData(snapshot, 0, 0);
+  const radius = Math.sqrt(Math.pow(x - prevX, 2) + Math.pow(y - prevY, 2)); // Расстояние от начальной точки до текущей
+  const startAngle = 0;  // Начальный угол (0 радиан)
+  const endAngle = Math.PI;  // Конечный угол (полукруг, 180 градусов)
+  // Рисуем полукруг
+  ctx.arc(prevX, prevY, radius, startAngle, endAngle); 
+  ctx.stroke();
 }
 
 // рисование - кривая
 function drawCurved(e) {
+  ctx.beginPath();
   const [x, y] = getCoordinates(e);
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
-  // ctx.moveTo(lastX, lastY);
+  ctx.moveTo(lastX, lastY);
   ctx.lineTo(x, y);
   ctx.stroke();
   [lastX, lastY] = [x, y];
@@ -95,7 +90,6 @@ function drawCurved(e) {
 
 // Рисование прямоугольника
 function drawRectangle(e) {
-  console.log('rectangle-2');
   ctx.putImageData(snapshot, 0, 0);
   ctx.strokeRect(prevX, prevY, e.offsetX - prevX, e.offsetY - prevY);
 }
@@ -123,7 +117,6 @@ function draw(e) {
       break;
     // квадрат
     case tools.rectangle:
-      console.log('rectangle-1');
       drawRectangle(e);
       break;
   }
@@ -169,8 +162,8 @@ clearButton.addEventListener("click", clearCanvas);
 const buttons = document.querySelectorAll("#btn1, #btn2, #btn3, #btn4");
 
 function activateButton(button) {
-  buttons.forEach(btn => btn.classList.remove("active"));  // Снимаем класс "active" со всех кнопок
-  button.classList.add("active");  // Добавляем класс "active" на выбранную кнопку
+  buttons.forEach(btn => btn.classList.remove("active"));
+  button.classList.add("active");
 }
 
 // Добавляем обработчики событий на кнопки
