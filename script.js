@@ -66,14 +66,18 @@ function drawStraight(e) {
 function drawVector(e) {
   ctx.beginPath();
   const [x, y] = getCoordinates(e); // Получаем текущие координаты
-  // Сначала рисуем полукруг
   ctx.putImageData(snapshot, 0, 0);
-  const radius = Math.sqrt(Math.pow(x - prevX, 2) + Math.pow(y - prevY, 2)); // Расстояние от начальной точки до текущей
-  const startAngle = 0;  // Начальный угол (0 радиан)
-  const endAngle = Math.PI;  // Конечный угол (полукруг, 180 градусов)
+  // Вычисляем радиус (расстояние от начальной точки до текущей)
+  const radius = Math.sqrt(Math.pow(x - prevX, 2) + Math.pow(y - prevY, 2)); 
+  // Вычисляем угол, на основе направления перемещения
+  const angle = Math.atan2(y - prevY, x - prevX); // Угол между начальной и текущей точкой (в радианах)
+  // Определяем начало и конец дуги в зависимости от направления
+  const startAngle = angle - Math.PI / 2;  // Начальный угол полукруга (сдвигаем на -90 градусов для правильного положения)
+  const endAngle = angle + Math.PI / 2;    // Конечный угол полукруга (сдвигаем на +90 градусов для рисования полукруга)
   // Рисуем полукруг
-  ctx.arc(prevX, prevY, radius, startAngle, endAngle); 
+  ctx.arc(prevX, prevY, radius, startAngle, endAngle); // Рисуем полукруг
   ctx.stroke();
+  ctx.closePath();
 }
 
 // рисование - кривая
