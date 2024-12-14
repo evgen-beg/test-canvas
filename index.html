@@ -8,16 +8,46 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <div class="coordinats_container">
+      <input class="coordinats" type="text" id="X" placeholder="X=0" />
+      <input class="coordinats" type="text" id="Y" placeholder="Y=0" />
+
+      <input
+        class="coordinats"
+        type="text"
+        id="canvasX"
+        placeholder="canvasX=0"
+      />
+      <input
+        class="coordinats"
+        type="text"
+        id="canvasY"
+        placeholder="canvasY=0"
+      />
+
+      <input class="coordinats" type="text" id="pictX" placeholder="pictX=0" />
+      <input class="coordinats" type="text" id="pictY" placeholder="pictY=0" />
+    </div>
+
     <div class="buttons">
-      <button id="submit_clear" class="submit_clear" type="submit">ОЧИСТИТЬ</button>
-      <input class="coordinats" type="text" id="X" placeholder="X=0">
-      <input class="coordinats" type="text" id="Y" placeholder="Y=0">
+      <button id="submit_clear" class="submit_clear" type="submit">
+        ОЧИСТИТЬ
+      </button>
 
-      <input class="coordinats" type="text" id="canvasX" placeholder="canvasX=0">
-      <input class="coordinats" type="text" id="canvasY" placeholder="canvasY=0">
-
-      <input class="coordinats" type="text" id="pictX" placeholder="pictX=0">
-      <input class="coordinats" type="text" id="pictY" placeholder="pictY=0">
+      <div class="btn-lines">
+        <button id="btn1">
+          <img src="src/views/icons/straight-one.png" alt="прямая" />
+        </button>
+        <button id="btn2">
+          <img src="src/views/icons/vector-curve-with-box-tips.png" alt="округлая" />
+        </button>
+        <button id="btn3">
+          <img src="src/views/icons/curved-arrow.png" alt="кривая" />
+        </button>
+        <button id="btn4">
+          <img src="src/views/icons/square.png" alt="квадрат" />
+        </button>
+      </div>
     </div>
 
     <canvas id="myCanvas" class="myCanvas"></canvas>

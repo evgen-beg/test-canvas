@@ -1,0 +1,26 @@
+.btn-lines {
+  display: flex;
+  gap: 15px;
+  img {
+    width: 40px;
+  }
+
+  button {
+    // font-size: 16px;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+  }
+
+  button.active {
+    background-color: #4caf50;
+    color: white;
+  }
+
+  button.inactive {
+    background-color: #f0f0f0;
+    color: #888;
+  }
+
+}

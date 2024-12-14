@@ -9,20 +9,26 @@ body {
   background-color: #f0f0f0;
 }
 
+.coordinats_container {
+  width: $width_canvas;
+
+  .coordinats {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid black;
+  }
+}
+
 .buttons {
   // background-color: green;
-  width: 800px;
-
-.coordinats {
-  width: 100px;
-  padding: 5px;
-  border: 1px solid black;
-}
+  width: $width_canvas;
+  display: flex;
+  gap: 25px;
 
   .submit_clear {
     appearance: none;
     border: 0;
-    border-radius: 5px;
+    border-radius: 10px;
     background: #4676d7;
     color: #fff;
     padding: 8px 16px;
@@ -42,8 +48,8 @@ body {
 
 .myCanvas {
   // margin: 10px;
-  width: 800px;
-  height: 600px;
+  width: $width_canvas;
+  height: $height_canvas;
   background-color: rgb(222, 217, 211);
   border: 1px solid black;
 }

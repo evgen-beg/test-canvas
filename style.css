@@ -63,18 +63,24 @@ body {
   background-color: #f0f0f0;
 }
 
-.buttons {
+.coordinats_container {
   width: 800px;
 }
-.buttons .coordinats {
+.coordinats_container .coordinats {
   width: 100px;
   padding: 5px;
   border: 1px solid black;
 }
+
+.buttons {
+  width: 800px;
+  display: flex;
+  gap: 25px;
+}
 .buttons .submit_clear {
   appearance: none;
   border: 0;
-  border-radius: 5px;
+  border-radius: 10px;
   background: #4676d7;
   color: #fff;
   padding: 8px 16px;
@@ -89,6 +95,28 @@ body {
   height: 600px;
   background-color: rgb(222, 217, 211);
   border: 1px solid black;
+}
+
+.btn-lines {
+  display: flex;
+  gap: 15px;
+}
+.btn-lines img {
+  width: 40px;
+}
+.btn-lines button {
+  cursor: pointer;
+  border: 2px solid #ccc;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s;
+}
+.btn-lines button.active {
+  background-color: #4caf50;
+  color: white;
+}
+.btn-lines button.inactive {
+  background-color: #f0f0f0;
+  color: #888;
 }
 
 /*# sourceMappingURL=style.css.map */
